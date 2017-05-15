@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CIT Family</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='http://fonts.googleapis.com/css?family=Changa+One|Open+Sans:400italic,700italic,400,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="shadowbox.css" type="text/css" media="all"/>
+  </head>
+  <body onload="startTime()">
+    <header>
+      <a href="index.html" id="logo">
+        <h1>CIT Family</h1>
+        <h2>Jeff Orlich Denis Semendyayev</h2>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="selected">Portfolio</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="wrapper">
+	<b><center> CNN and BBC <b></center>
+      <section>
+        <ul id="gallery">
+          <li>
+            <a href="" id="url">
+              <img id="image" src"" alt="">
+              <p id="test"></p>
+            </a>
+          </li>
+          <li>
+            <a href="" id="url1">
+              <img id="image1" src"" alt="">
+              <p id="test1"></p>
+            </a>
+          </li>
+          <li>
+            <a href="" id="url2">
+              <img id="image2" src"" alt="">
+              <p id="test2"></p>
+            </a>
+          </li>
+		   <li>
+            <a href="" id="bbc1">
+              <img id="bbcimage" src"" alt="">
+              <p id="bbctest"></p>
+            </a>
+          </li>
+          <li>
+            <a href="" id="bbc2">
+              <img id="bbcimage1" src"" alt="">
+              <p id="bbctest1"></p>
+            </a>
+          </li>
+          <li>
+            <a href="" id="bbc3">
+              <img id="bbcimage2" src"" alt="">
+              <p id="bbctest2"></p>
+            </a>
+          </li>
+        </ul>
+
+      </section>
+
+      <footer>
+	  <p id="txt">
+</p>
+        <a href="http://twitter.com/dsemendyayev"><img src="img/twitter-wrap.png" alt="Twitter Logo" class="social-icon"></a>
+        <a href="http://facebook.com/semendyayev"><img src="img/facebook-wrap.png" alt="Facebook Logo" class="social-icon"></a>
+        <p>&copy; 2017 CIT Family.</p>
+      </footer>
+    </div>
+
+
+  </body>
+
+  <script>
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://newsapi.org/v1/articles?source=cnn&sortBy=top&apiKey=0a17e21c320d4e1a82f1dc7f326b4e93", false);
+  xhr.send();
+  xhr.onload = function (e) {
+  if (xhr.readyState === 4) {
+  if (xhr.status === 200) {
+  console.log(xhr.responseText);
+  } else {
+  console.error(xhr.statusText);
+  }
+  }
+  };
+  xhr.onerror = function (e) {
+  console.error(xhr.statusText);
+  };
+
+  console.log(xhr.status);
+  console.log(xhr.response);
+  var parsed = JSON.parse(xhr.responseText);
+  console.log(parsed);
+  document.getElementById('url').href = parsed.articles[0].url;
+  document.getElementById('image').src = parsed.articles[0].urlToImage;
+  document.getElementById('test').innerHTML = parsed.articles[0].description;
+  document.getElementById('url1').href = parsed.articles[2].url;
+  document.getElementById('image1').src = parsed.articles[2].urlToImage;
+  document.getElementById('test1').innerHTML = parsed.articles[2].description;
+  document.getElementById('url2').href = parsed.articles[6].url;
+  document.getElementById('image2').src = parsed.articles[6].urlToImage;
+  document.getElementById('test2').innerHTML = parsed.articles[6].description;
+
+  console.log(parsed.articles[1].description);
+</script>
+<script>
+var xhr1 = new XMLHttpRequest();
+  xhr1.open("GET", " https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=0a17e21c320d4e1a82f1dc7f326b4e93", false);
+  xhr1.send();
+  xhr1.onload = function (e) {
+  if (xhr1.readyState === 4) {
+  if (xhr1.status === 200) {
+  console.log(xhr1.responseText);
+  } else {
+  console.error(xhr1.statusText);
+  }
+  }
+  };
+  xhr1.onerror = function (e) {
+  console.error(xhr.statusText);
+  };
+
+  console.log(xhr1.status);
+  console.log(xhr1.response);
+  var parsed1 = JSON.parse(xhr1.responseText);
+  console.log(parsed);
+  document.getElementById('bbc1').href = parsed1.articles[0].url;
+  document.getElementById('bbcimage').src = parsed1.articles[0].urlToImage;
+  document.getElementById('bbctest').innerHTML = parsed1.articles[0].description;
+  document.getElementById('bbc2').href = parsed1.articles[2].url;
+  document.getElementById('bbcimage1').src = parsed1.articles[2].urlToImage;
+  document.getElementById('bbctest1').innerHTML = parsed1.articles[2].description;
+  document.getElementById('bbc3').href = parsed1.articles[6].url;
+  document.getElementById('bbcimage2').src = parsed1.articles[6].urlToImage;
+  document.getElementById('bbctest2').innerHTML = parsed1.articles[6].description;
+
+  console.log(parsed1.articles[1].description);
+</script>
+<script>
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd='0'+dd
+} 
+
+if(mm<10) {
+    mm='0'+mm
+} 
+
+today = mm+'/'+dd+'/'+yyyy;
+document.write(today);
+</script>
+<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+</html>
